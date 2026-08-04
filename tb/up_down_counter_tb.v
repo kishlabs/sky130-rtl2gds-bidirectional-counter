@@ -30,6 +30,11 @@ module up_down_counter_tb;
     end
 
     initial begin
+    	$dumpfile("counter.vcd");
+    	$dumpvars(0, up_down_counter_tb);
+    end
+
+    initial begin
         rst_n   = 0;
         en      = 0;
         up_down = 1;
