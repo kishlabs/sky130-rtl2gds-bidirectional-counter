@@ -1,3 +1,5 @@
+`timescale 1ns/1ps
+
 module up_down_counter(
 	input wire clk,
 	input wire rst_n,
