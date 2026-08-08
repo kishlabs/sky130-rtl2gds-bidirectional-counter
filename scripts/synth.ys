@@ -1,0 +1,16 @@
+# 1. Read design
+read_verilog rtl/up_down_counter.v
+
+# 2. Technology-independent synthesis (elaborate + generic optimize)
+synth -top up_down_counter
+
+# 3. Technology-dependent mapping to Sky130
+dfflibmap -liberty /home/kumar/.ciel/sky130A/libs.ref/sky130_fd_sc_hd/lib/sky130_fd_sc_hd__tt_025C_1v80.lib
+abc -liberty /home/kumar/.ciel/sky130A/libs.ref/sky130_fd_sc_hd/lib/sky130_fd_sc_hd__tt_025C_1v80.lib
+
+# 4. Cleanup
+opt_clean -purge
+
+# 5. Reports + output netlist
+stat -liberty /home/kumar/.ciel/sky130A/libs.ref/sky130_fd_sc_hd/lib/sky130_fd_sc_hd__tt_025C_1v80.lib
+write_verilog -noattr synth/up_down_counter_synth.v
