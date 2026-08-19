@@ -4,7 +4,8 @@
 read_lef /home/kumar/.ciel/sky130A/libs.ref/sky130_fd_sc_hd/techlef/sky130_fd_sc_hd__nom.tlef
 read_lef /home/kumar/.ciel/sky130A/libs.ref/sky130_fd_sc_hd/lef/sky130_fd_sc_hd.lef
 read_liberty /home/kumar/.ciel/sky130A/libs.ref/sky130_fd_sc_hd/lib/sky130_fd_sc_hd__tt_025C_1v80.lib
-read_def pd/placement.def
+read_def pd/placement_filled.def
+remove_fillers
 read_sdc constraints/counter.sdc
 
 # ---- 2. Tell CTS which layer to model clock wire RC on ----
@@ -32,6 +33,8 @@ set_propagated_clock [all_clocks]
 # ---- 8. Reports - the actual verification ----
 report_cts
 report_clock_skew
+
+filler_placement {sky130_fd_sc_hd__fill_1 sky130_fd_sc_hd__fill_2 sky130_fd_sc_hd__fill_4 sky130_fd_sc_hd__fill_8}
 
 # ---- 9. Output ----
 write_def pd/cts.def
